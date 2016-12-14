@@ -410,8 +410,8 @@ void loop()
      gy = (float)MPU9250Data[5]*gRes;  
      gz = (float)MPU9250Data[6]*gRes; 
   
-//    newMagData = (readByte(AK8963_ADDRESS, AK8963_ST1) & 0x01);
-//    if(newMagData == true) { // wait for magnetometer data ready bit to be set
+    newMagData = (readByte(AK8963_ADDRESS, AK8963_ST1) & 0x01);
+    if(newMagData == true) { // wait for magnetometer data ready bit to be set
       readMagData(magCount);  // Read the x/y/z adc values
   
     // Calculate the magnetometer values in milliGauss
@@ -422,7 +422,7 @@ void loop()
       mx *= magScale[0];
       my *= magScale[1];
       mz *= magScale[2]; 
-//    }
+    }
     
     for(uint8_t i = 0; i < 10; i++) { // iterate a fixed number of times per data read cycle
     Now = micros();
@@ -432,7 +432,7 @@ void loop()
     sum += deltat; // sum for averaging filter update rate
     sumCount++;
 
-    MadgwickQuaternionUpdate(ax, -ay, -az, gx*pi/180.0f, -gy*pi/180.0f, -gz*pi/180.0f,  my,  -mx, mz);
+    MadgwickQuaternionUpdate(-ax, ay, az, gx*pi/180.0f, -gy*pi/180.0f, -gz*pi/180.0f,  my,  -mx, mz);
     }
  } 
 
@@ -547,17 +547,17 @@ void loop()
     Serial.println(roll, 2);
 
     Serial.print("Grav_x, Grav_y, Grav_z: ");
-    Serial.print(-a31*1000, 2);
+    Serial.print(-a31*1000.0f, 2);
     Serial.print(", ");
-    Serial.print(-a32*1000, 2);
+    Serial.print(-a32*1000.0f, 2);
     Serial.print(", ");
-    Serial.print(a33*1000, 2);  Serial.println(" mg");
+    Serial.print(a33*1000.0f, 2);  Serial.println(" mg");
     Serial.print("Lin_ax, Lin_ay, Lin_az: ");
-    Serial.print(lin_ax*1000, 2);
+    Serial.print(lin_ax*1000.0f, 2);
     Serial.print(", ");
-    Serial.print(lin_ay*1000, 2);
+    Serial.print(lin_ay*1000.0f, 2);
     Serial.print(", ");
-    Serial.print(lin_az*1000, 2);  Serial.println(" mg");
+    Serial.print(lin_az*1000.0f, 2);  Serial.println(" mg");
 
     Serial.print("sumCount = "); Serial.println(sumCount);
     Serial.print("sum = "); Serial.println(sum);
@@ -1197,9 +1197,8 @@ void I2Cscan()
   Wire.beginTransmission(address);         // Initialize the Tx buffer
   Wire.write(subAddress);                  // Put slave register address in Tx buffer
   Wire.endTransmission(false);             // Send the Tx buffer, but send a restart to keep connection alive
-  Wire.requestFrom(address, 2);            // Read two bytes from slave register address on MPU9250 
+  Wire.requestFrom(address, 1);            // Read two bytes from slave register address on MPU9250 
   data = Wire.read();                      // Fill Rx buffer with result
-  Wire.read();                             // extra Wire.read to unlock SDA on MPU9250
   return data;                             // Return data read from slave register
 }
 
