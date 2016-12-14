@@ -1139,9 +1139,8 @@ void I2Cscan()
 	Wire.beginTransmission(address);         // Initialize the Tx buffer
 	Wire.write(subAddress);	                 // Put slave register address in Tx buffer
 	Wire.endTransmission(false);             // Send the Tx buffer, but send a restart to keep connection alive
-	Wire.requestFrom(address, 2);            // Read one byte from slave register address 
+	Wire.requestFrom(address, 1);            // Read one byte from slave register address 
 	data = Wire.read();                      // Fill Rx buffer with result
-	Wire.read();
 	return data;                             // Return data read from slave register
 }
 
