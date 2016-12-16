@@ -1,0 +1,1 @@
+Sketch to read the time-of-flight ranging sensor VL53L0x with 2000 cm range and better than 1% accuracy. I use [this](https://www.tindie.com/products/onehorse/vl53l0x-time-of-flight-ranging-sensor/) VL53L0X breakout board for the measurements.
