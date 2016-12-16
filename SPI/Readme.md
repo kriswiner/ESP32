@@ -1,4 +1,4 @@
-Output should look like this for Spansion S25FL127 128 Mbit SPI NOR flash:
+Output for the SPIFlash test program should look like this for a Spansion S25FL127 128 Mbit SPI NOR flash:
 
 Serial enabled!
 
