@@ -1,3 +1,7 @@
+I use [this](https://www.tindie.com/products/onehorse/spi-flash-memory-add-ons-for-teensy-3x/) for the SPI NOR flash add-on board.
+
+![](https://d3s5r33r268y59.cloudfront.net/44691/products/thumbs/2015-03-16T03:24:10.978Z-S25FL127.front.jpg.855x570_q85_pad_rcrop.jpg)
+
 Output for the SPIFlash test program should look like this for a Spansion S25FL127 128 Mbit SPI NOR flash:
 
 Serial enabled!
