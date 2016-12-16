@@ -1,6 +1,6 @@
 # ESP32 Arduino sketch repository
 
-These are sketches I have found to run on my own ESP32 develpoment board pictured below.
+These are sketches I have found to run on my own 1.4" x 0.7" ESP32 development board pictured below.
 
 ![](https://cloud.githubusercontent.com/assets/6698410/21195535/0eff4500-c1e9-11e6-9fa1-deb1077887aa.jpg)
 
