@@ -1,5 +1,5 @@
 /*
-  Blink_pwm_ESP32
+  ledcWrite_demo_ESP32.ino
   Runs through the full 255 color spectrum for an rgb led 
   Demonstrate ledcWrite functionality for driving leds with PWM on ESP32
  
