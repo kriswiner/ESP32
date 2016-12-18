@@ -8,8 +8,8 @@
  
 // Set up the rgb led names
 uint8_t ledR = 12;
-uint8_t ledG = 13; // internally pulled up
-uint8_t ledB = 14; 
+uint8_t ledG = 14; // internally pulled up
+uint8_t ledB = 13; 
 
 uint8_t myLed = 5;  // on-board blue led (also internally pulled up)
 
@@ -28,8 +28,8 @@ void setup()
   digitalWrite(5, LOW);// Turn off on-board blue led
   
   ledcAttachPin(ledR, 1); // assign RGB led pins to channels
-  ledcAttachPin(ledB, 2);
-  ledcAttachPin(ledG, 3);
+  ledcAttachPin(ledG, 2);
+  ledcAttachPin(ledB, 3);
   
   // Initialize channels 
   // channels 0-15, resolution 1-16 bits, freq limits depend on resolution
