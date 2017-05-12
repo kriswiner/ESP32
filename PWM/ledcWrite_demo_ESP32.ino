@@ -25,7 +25,7 @@ uint8_t brightness = 255;  // 255 is maximum brightness, but can be changed
 void setup() 
 {             
   pinMode(myLed, OUTPUT); 
-  digitalWrite(myLed5, LOW);// Turn off on-board blue led
+  digitalWrite(myLed, LOW);// Turn off on-board blue led
   
   ledcAttachPin(ledR, 1); // assign RGB led pins to channels
   ledcAttachPin(ledG, 2);
