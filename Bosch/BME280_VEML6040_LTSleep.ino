@@ -49,9 +49,9 @@ void      I2Cscan();
 void      writeByte(uint8_t address, uint8_t subAddress, uint8_t data);
 uint8_t   readByte(uint8_t address, uint8_t subAddress);
 void      readBytes(uint8_t address, uint8_t subAddress, uint8_t count, uint8_t * dest);
-uint32_t  readBME280Temperature();
-uint32_t  readBME280Pressure();
-uint16_t  readBME280Humidity();
+int32_t  readBME280Temperature();
+int32_t  readBME280Pressure();
+int32_t  readBME280Humidity();
 void      BME280Init();
 uint32_t  BME280_compensate_P(int32_t adc_P);
 int32_t   BME280_compensate_T(int32_t adc_T);
@@ -171,8 +171,7 @@ float redLight, greenLight, blueLight, ambientLight;
 
 float Temperature, Pressure, Humidity; // stores BME280 pressures sensor pressure and temperature
 float VBAT;  // battery voltage from ESP8285 ADC read
-uint32_t rawPress, rawTemp;   // pressure and temperature raw count output for BME280
-uint16_t rawHumidity;  // variables to hold raw BME280 humidity value
+int32_t rawPress, rawTemp, rawHumidity;   // pressure and temperature raw count output for BME280
 
 // BME280 compensation parameters
 uint8_t  dig_H1, dig_H3, dig_H6;
@@ -437,25 +436,25 @@ void loop()
   Serial.println(" dBm");
   }
 */
-uint32_t readBME280Temperature()
+int32_t readBME280Temperature()
 {
   uint8_t rawData[3];  // 20-bit pressure register data stored here
   readBytes(BME280_ADDRESS, BME280_TEMP_MSB, 3, &rawData[0]);  
   return (uint32_t) (((uint32_t) rawData[0] << 16 | (uint32_t) rawData[1] << 8 | rawData[2]) >> 4);
 }
 
-uint32_t readBME280Pressure()
+int32_t readBME280Pressure()
 {
   uint8_t rawData[3];  // 20-bit pressure register data stored here
   readBytes(BME280_ADDRESS, BME280_PRESS_MSB, 3, &rawData[0]);  
   return (uint32_t) (((uint32_t) rawData[0] << 16 | (uint32_t) rawData[1] << 8 | rawData[2]) >> 4);
 }
 
-uint16_t readBME280Humidity()
+int32_t readBME280Humidity()
 {
-  uint8_t rawData[3];  // 20-bit pressure register data stored here
+  uint8_t rawData[2];  // 16-bit humidity register data stored here
   readBytes(BME280_ADDRESS, BME280_HUM_MSB, 2, &rawData[0]);  
-  return (uint16_t) (((uint16_t) rawData[0] << 8 | rawData[1]) );
+   return (uint32_t) (((uint32_t) rawData[0] << 24 | (uint32_t) rawData[1] << 16) ) >> 16;
 }
 
 
