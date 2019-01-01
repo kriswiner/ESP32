@@ -19,11 +19,11 @@
 //Register map for LIS2MDL'
 // http://www.st.com/content/ccc/resource/technical/document/datasheet/group3/29/13/d1/e0/9a/4d/4f/30/DM00395193/files/DM00395193.pdf/jcr:content/translations/en.DM00395193.pdf
 #define LIS2MDL_OFFSET_X_REG_L        0x45
-#define LIS2MDL_OFFSET_X_REG_L        0x46
-#define LIS2MDL_OFFSET_X_REG_L        0x47
-#define LIS2MDL_OFFSET_X_REG_L        0x48
-#define LIS2MDL_OFFSET_X_REG_L        0x49
-#define LIS2MDL_OFFSET_X_REG_L        0x4A
+#define LIS2MDL_OFFSET_X_REG_H        0x46
+#define LIS2MDL_OFFSET_Y_REG_L        0x47
+#define LIS2MDL_OFFSET_Y_REG_H        0x48
+#define LIS2MDL_OFFSET_Z_REG_L        0x49
+#define LIS2MDL_OFFSET_Z_REG_H        0x4A
 #define LIS2MDL_WHO_AM_I              0x4F
 #define LIS2MDL_CFG_REG_A             0x60
 #define LIS2MDL_CFG_REG_B             0x61
