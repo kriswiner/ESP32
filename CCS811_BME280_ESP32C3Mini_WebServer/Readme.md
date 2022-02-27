@@ -4,7 +4,7 @@ Demonstration of a simple webserver pushing data from a BME280 (pressure, temper
 
 The ESP32 is an ESP32 C3 Mini module on a custom development board using the native USB for programming with the Arduino IDE and USB serial output.
 
-~[image](https://user-images.githubusercontent.com/6698410/155865582-daab5d08-0a00-4984-9684-b989d95954c0.jpg)
+![image](https://user-images.githubusercontent.com/6698410/155865582-daab5d08-0a00-4984-9684-b989d95954c0.jpg)
 
 The web server update is set to the rate of CCS811 interrupt (here every 10 seconds). I heven't gotten deep sleep to work yet since the ExternalWakeUp example won't compile. But the idea is to manage the power usage of the ESP32 by keeping it in deep sleep mode either on a timer or using the CCS811 (with 60 second sample period) to wake up the ESP32 on daya ready interrupt.
 
