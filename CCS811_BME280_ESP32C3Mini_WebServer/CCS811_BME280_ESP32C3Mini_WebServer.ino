@@ -219,7 +219,7 @@ void setup()
   /* Set alarm to call onTimer function every second 1 tick is 1us
   => 1 second is 1000000us */
   /* Repeat the alarm (third parameter) */
-  timerAlarmWrite(timer, 2000000, true);
+  timerAlarmWrite(timer, 10000000, true); // update every ten seconds
 
   /* Start an alarm */
   timerAlarmEnable(timer);
@@ -285,10 +285,7 @@ void setup()
 }
 
 void loop()
-{
-    server.handleClient();
-    delay(2);//allow the cpu to switch to other tasks
-  
+{  
     // CCS811 data
     // If intPin goes LOW, all data registers have new data
     if(newCCS811Data == true) {  // On interrupt, read data
@@ -361,7 +358,8 @@ void loop()
       
     digitalWrite(myLed, LOW); delay(10); digitalWrite(myLed, HIGH); // blink led at end of loop
     }  
-         
+    
+ yield(); //allow the cpu to switch to other tasks
 //     ESP32.sleep();    // time out in deep sleep mode to save power
 }
 
