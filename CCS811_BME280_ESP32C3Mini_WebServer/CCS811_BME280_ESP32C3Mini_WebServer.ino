@@ -31,8 +31,8 @@
 
 #define Serial USBSerial
 
-const char* ssid = "NETGEAR16";
-const char* password = "braveroad553";
+const char* ssid = "XXXXXXXXX";
+const char* password = "XXXXXXXXXXXX";
 
 WebServer server(80);
 
