@@ -1,5 +1,8 @@
 Sketch showing how to use the ESP32C3Mini1 as an environmental data logger. 
-The CCS811 air quality sensor and BME280 humidity/pressure/temperature sensors on a breakout board are configured in setup once, 
+
+I am using a custom ESP32C3Mini1 development board with native USB for programming (no CP2102).
+
+The CCS811 air quality sensor and BME280 humidity/pressure/temperature sensors are on a breakout board and are configured in setup once, 
 their data is read and then the ESP32 goes into deep sleep for some time (10 minutes in the sketch). Upon wakeup, the sensor configuration is skipped if the bootcount variable is greater than 1 and the data is read and the ESP32C3 goes into deep sleep, etc. The cycle repeats.
 
 ![image](https://user-images.githubusercontent.com/6698410/155865582-daab5d08-0a00-4984-9684-b989d95954c0.jpg)
