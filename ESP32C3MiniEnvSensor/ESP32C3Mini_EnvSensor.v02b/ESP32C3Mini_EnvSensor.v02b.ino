@@ -16,8 +16,8 @@
 
 extern "C" void phy_bbpll_en_usb(bool en);
 
-const char* ssid       = "NETGEAR16";
-const char* password   = "braveroad553";
+const char* ssid       = "YourNetworkName";
+const char* password   = "YourNetworkPassword";
 
 const char* ntpServer = "pool.ntp.org";
 const long  gmtOffset_sec = -8*3600; // PST for California
