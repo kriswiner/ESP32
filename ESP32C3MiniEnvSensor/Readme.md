@@ -8,7 +8,7 @@ Rather than use the internal ~3 MByte SPIFFS, which uses a lot of power, I selec
 
 In addition to four-color lux, humidity, temperature, and pressure measurements, I added a resistor divider and dual FET to sample the battery voltage via an ESP32C3 ADC. The board also has user/boot and reset buttons, and an led for indication. 
 
-The board main power rail is 3V3 from an MCP1812 LDO whose Iq is just 300 nA. I took great pains to minimize the power usage which is dominated by the ESP32Mini module itself, being 5.6 uA in deep sleep mode. Everything else adds a small amount (~few uA, TBD) to this.
+The board main power rail is 3V3 from an MCP1812 LDO whose Iq is just 300 nA. I took pains to minimize the power usage which is dominated by the ESP32Mini module itself, being 5.6 uA in deep sleep mode. Everything else adds a small amount (~few uA, TBD) to this.
 
 I am using Wifi to connect to the NTP server to initially sync the time peripheral then disconnecting Wifi. The idea is to log human readable time (sec, min, hour, day, month, year) along with the sensor data so over long periods of logging the sensor data can be correlated to real time. One could drop year and second to reduce the memory burden especially over short logging sessions since logging at duty cycles where sensor variations meaningfully reflect environmental changes, say every ten minutes, means the seconds are always the same. Short sessions means the year is unlikely to change.
 
