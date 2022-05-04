@@ -4,9 +4,9 @@ The idea is to use the remarkably [cheap](https://www.digikey.com/en/products/de
 
 The set of I2C sensors:
 
-APDS9253 RGBiR light sensor
+**APDS9253 RGBiR light sensor
 HDC2010 humidity and temperature sensor
-LPS22HB barometer
+LPS22HB barometer**
 
 Rather than use the internal ~3 MByte SPIFFS, which uses a lot of power, I selected an external, ultra-low-power (100 nA in deep power down mode) 8 MByte MX25R6435FZAI NOR flash memory to log the data. 
 
@@ -18,7 +18,12 @@ I am using Wifi to connect to the NTP server to initally sync the time periphera
 
 So far I am logging 23 bytes of data for each logging event so I can log 11 events (253 bytes) before I write a 256-byte page to flash. This is efficient enough but YMMV.
 
-So far I have the basic sketch working to configure the sensors and flash, and then peridically read sensor data, store it in an arrat and then write a full page to external flash. In each case but the baro, the sensors/flash is kept in its lowest power state until needed. In the case of the sensors, this means once every five or ten minutes. For the flash, this means once wvery 55 or 110 minutes. It took a while to get this all working properly because of some of the quirks of the ESP32C3Mini. One big issue was the USB serial (I am using the native USB not a USB-to-Serial transceiver). Turns out with WiFi this is automaticlly disconnected and  a boolean flag has to be set to make sure this is turned on again.
+So far I have the basic sketch working to configure the sensors and flash, and then peridically read sensor data, store it in an arrat and then write a full page to external flash. In each case but the baro, the sensors/flash is kept in its lowest power state until needed. In the case of the sensors, this means once every five or ten minutes. For the flash, this means once wvery 55 or 110 minutes. 
+
+It took a while to get this all working properly because of some of the quirks of the ESP32C3Mini. One big issue was the USB serial (I am using the native USB not a USB-to-Serial transceiver). Turns out with WiFi this is automatically disconnected and a boolean flag has to be set to make sure this is turned on again. The other difficulty I had was selecting the SPI Flash clock speed. I settled on 10 MHz, which produced the most reliable results. It seemed to work at 20 and 40 MHz but in testing I had intermittent falirues to record some or all of the data, and once the data was recorded but the date was mangled. The data never wrote to the flash at 80 MHz, the speed at which the internal flash usually operates. So the MX25R6435 external SPI flash or the ESP32C3 SPI peripheral or both might be a little flaky. Could also be pilot error. However I have been using the MX25R6435FZAI in STM32L0-hosted asset tracking applications running at 50 MHz SPI clock speed with no trouble for years. I will continue testing in real-world logging applications.
+
+Lastly, some data from the last overnight logging test run:
+
 
 ![ESP32C3Mini top](https://user-images.githubusercontent.com/6698410/166591280-3111662b-efe1-49bb-904c-abd950bf572f.jpg)
 ![ESP32C3Mini_bottom](https://user-images.githubusercontent.com/6698410/166591298-9c89f85a-87d2-4b78-b5d7-5e32c969c563.jpg)
