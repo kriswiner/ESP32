@@ -1,8 +1,8 @@
 **ESP32C3Mini-hosted environmental data logger**
 
-The idea is to use the remarkably [cheap](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-C3-MINI-1-N4/138775740) ESP32C3Mini module (ESP32-C3-Mini-1-N4) as host for an environmental data logger that canrun for months on a small battery. 
+The idea is to use the remarkably [cheap](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-C3-MINI-1-N4/138775740) ESP32C3Mini module (ESP32-C3-Mini-1-N4) as host for an environmental data logger that can run for months on a small battery. 
 
-The set of I2C sensors include the APDS9253 RGBiR light sensor, HDC2010 humidity and temperature sensor, and LPS22HB barometer.
+The set of I2C sensors includes the APDS9253 RGBiR light sensor, HDC2010 humidity and temperature sensor, and LPS22HB barometer.
 
 Rather than use the internal ~3 MByte SPIFFS, which uses a lot of power, I selected an external, ultra-low-power (100 nA in deep power down mode) 8 MByte MX25R6435FZAI NOR flash memory to log the data. 
 
