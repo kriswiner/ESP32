@@ -4,9 +4,9 @@ The idea is to use the remarkably [cheap](https://www.digikey.com/en/products/de
 
 The set of I2C sensors:
 
-**APDS9253 RGBiR light sensor
+APDS9253 RGBiR light sensor
 HDC2010 humidity and temperature sensor
-LPS22HB barometer**
+LPS22HB barometer
 
 Rather than use the internal ~3 MByte SPIFFS, which uses a lot of power, I selected an external, ultra-low-power (100 nA in deep power down mode) 8 MByte MX25R6435FZAI NOR flash memory to log the data. 
 
