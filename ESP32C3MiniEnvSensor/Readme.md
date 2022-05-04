@@ -24,6 +24,9 @@ It took a while to get this all working properly because of some of the quirks o
 
 Lastly, some data from the last overnight logging test run:
 
+![ESP32C3MiniEnvLogTest3](https://user-images.githubusercontent.com/6698410/166608157-96e9a205-15b8-46f6-a29f-296c916ab96c.jpg)
+
+You can see the temperature spike from the initial Wifi time sync drop rapidly at the beginning. You can also see sunset at ~7:55 pm. The 105 mAH freshly-charged LiPo only lasted 7.3 hours before conking out, so an average current usage of 14 mA at 80 MHz clock speed and no deep sleep. Implementing the latter is the next task...
 
 ![ESP32C3Mini top](https://user-images.githubusercontent.com/6698410/166591280-3111662b-efe1-49bb-904c-abd950bf572f.jpg)
 ![ESP32C3Mini_bottom](https://user-images.githubusercontent.com/6698410/166591298-9c89f85a-87d2-4b78-b5d7-5e32c969c563.jpg)
