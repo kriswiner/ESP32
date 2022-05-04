@@ -2,11 +2,7 @@
 
 The idea is to use the remarkably [cheap](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-C3-MINI-1-N4/138775740) ESP32C3Mini module (ESP32-C3-Mini-1-N4) as host for an environmental data logger that can last for months on a small battery. 
 
-The set of I2C sensors:
-
-APDS9253 RGBiR light sensor
-HDC2010 humidity and temperature sensor
-LPS22HB barometer
+The set of I2C sensors include the APDS9253 RGBiR light sensor, HDC2010 humidity and temperature sensor, and LPS22HB barometer.
 
 Rather than use the internal ~3 MByte SPIFFS, which uses a lot of power, I selected an external, ultra-low-power (100 nA in deep power down mode) 8 MByte MX25R6435FZAI NOR flash memory to log the data. 
 
@@ -20,7 +16,7 @@ So far I am logging 23 bytes of data for each logging event so I can log 11 even
 
 I have two utility sketches in addition to the mainlogging sketch. SPIFlash tests the flash and ends up erasing it. This is useful for inital assembly tests as well as erasing the flash for the next logging session. The readSPIFlash sketch reads the  bytes stored on the flash during a data logging session and recostructs the properly-scaled and formwatted dataand prints it to the serial monitor as comma -delimited lines (one data log per line) for subsequent plotting in a spreadsheet like Ezcel or OpenOffice (see below for an example).
 
-So far I have the basic sketch working to configure the sensors and flash, and then peridically read sensor data, store it in an arrat and then write a full page to external flash. In each case but the baro, the sensors/flash is kept in its lowest power state until needed. In the case of the sensors, this means once every five or ten minutes. For the flash, this means once wvery 55 or 110 minutes. 
+So far I have the basic sketch working to configure the sensors and flash, and then peridically read sensor data, store it in an arrat and then write a full page to external flash. In each case but the baro, the sensors/flash is kept in its lowest power state until needed. In the case of the sensors, this means once every five or ten minutes. For the flash, this means once wvery 55 or 110 minutes. I am running the baro continuously at 1 Hz since my attempts to use the forced mode have resulted in poor data quality from the sensor. I think it has to run a few cycles to settle so forced or one-shot mode for this sensor isn;t a good option. I might replace it with the newer IAQS22 baro in a subsequent design.
 
 It took a while to get this all working properly because of some of the quirks of the ESP32C3Mini. One big issue was the USB serial (I am using the native USB not a USB-to-Serial transceiver). Turns out with WiFi this is automatically disconnected and a boolean flag has to be set to make sure this is turned on again. The other difficulty I had was selecting the SPI Flash clock speed. I settled on 10 MHz, which produced the most reliable results. It seemed to work at 20 and 40 MHz but in testing I had intermittent falirues to record some or all of the data, and once the data was recorded but the date was mangled. The data never wrote to the flash at 80 MHz, the speed at which the internal flash usually operates. So the MX25R6435 external SPI flash or the ESP32C3 SPI peripheral or both might be a little flaky. Could also be pilot error. However I have been using the MX25R6435FZAI in STM32L0-hosted asset tracking applications running at 50 MHz SPI clock speed with no trouble for years. I will continue testing in real-world logging applications.
 
