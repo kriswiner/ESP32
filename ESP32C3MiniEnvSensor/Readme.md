@@ -1,4 +1,4 @@
-Description of ESP32C3Mini-hosted environmental data logger
+**ESP32C3Mini-hosted environmental data logger**
 
 The idea is to use the remarkably [cheap](https://www.digikey.com/en/products/detail/espressif-systems/ESP32-C3-MINI-1-N4/138775740) ESP32C3Mini module (ESP32-C3-Mini-1-N4) as host for an environmental data logger that can last for months on a small battery. 
 
